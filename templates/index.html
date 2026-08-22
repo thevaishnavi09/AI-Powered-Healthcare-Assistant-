@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Healthcare Assistant</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>AI Powered Healthcare Assistant</h1>
+    <p>Educational health support, symptom guidance, reminders, and mental wellness tips.</p>
+
+    <div class="auth">
+      {% if session.get('username') %}
+        <span>Welcome, {{ session.get('username') }}</span>
+        <a href="/logout">Logout</a>
+      {% else %}
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      {% endif %}
+    </div>
+
+    <div id="chatbox" class="chatbox"></div>
+
+    <form id="chat-form">
+      <input id="message" placeholder="Type your health question..." autocomplete="off">
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('chat-form');
+    const box = document.getElementById('chatbox');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const m = document.getElementById('message').value;
+      if (!m) return;
+
+      box.innerHTML += `<div class="msg user"><b>You:</b> ${m}</div>`;
+      document.getElementById('message').value = '';
+
+      const r = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({message: m})
+      });
+      const d = await r.json();
+      box.innerHTML += `<div class="msg bot"><b>Bot:</b> ${d.reply || JSON.stringify(d)}</div>`;
+      box.scrollTop = box.scrollHeight;
+    });
+  </script>
+</body>
+  </html>

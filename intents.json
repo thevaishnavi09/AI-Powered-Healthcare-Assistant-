@@ -1,0 +1,49 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["hi", "hello", "hey", "good morning", "good evening"],
+      "responses": [
+        "Hello! How can I help with your health question today?",
+        "Hi there. Tell me your symptoms or ask for advice."
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["bye", "goodbye", "see you later"],
+      "responses": [
+        "Take care. Stay hydrated and rest well.",
+        "Goodbye. Reach out again if you need general health guidance."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["thanks", "thank you", "appreciate it"],
+      "responses": [
+        "You're welcome.",
+        "Glad I could help."
+      ]
+    },
+    {
+      "tag": "mental_health",
+      "patterns": ["anxious", "stress", "sad", "depressed", "panic", "overwhelmed"],
+      "responses": [
+        "Try a slow breathing exercise: inhale for 4, hold for 4, exhale for 6. If these feelings persist or worsen, consider speaking with a licensed mental health professional."
+      ]
+    },
+    {
+      "tag": "emergency",
+      "patterns": ["chest pain", "can't breathe", "suicidal", "stroke", "unconscious"],
+      "responses": [
+        "This may be an emergency. Seek immediate medical help or contact local emergency services now."
+      ]
+    },
+    {
+      "tag": "general_advice",
+      "patterns": ["fever", "cough", "cold", "headache", "nausea", "stomach pain"],
+      "responses": [
+        "I can share basic guidance, but I can't diagnose. Please provide your symptoms, duration, and age for a safer suggestion."
+      ]
+    }
+  ]
+}
